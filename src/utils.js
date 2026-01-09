@@ -1,4 +1,4 @@
-﻿// Utility Functions
+﻿// Utility Functions - Updated
 function formatDate(date) {
     return new Date(date).toLocaleDateString('ko-KR');
 }
@@ -24,10 +24,22 @@ function debounce(func, wait) {
     };
 }
 
+// New utility: Generate unique ID
+function generateId() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
+
+// New utility: Sleep function
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 module.exports = {
     formatDate,
     formatTime,
     capitalize,
     truncate,
-    debounce
+    debounce,
+    generateId,
+    sleep
 };
