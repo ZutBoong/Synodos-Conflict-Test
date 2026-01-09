@@ -1,13 +1,18 @@
-﻿// Application Configuration
+﻿// Application Configuration - Updated for Production
 const config = {
-    appName: 'Synodos',
-    version: '1.0.0',
-    apiUrl: 'http://localhost:8081/api',
-    wsUrl: 'ws://localhost:8081/ws',
-    theme: 'light',
+    appName: 'Synodos Pro',
+    version: '2.0.0',
+    apiUrl: 'https://api.synodos.com/v2',
+    wsUrl: 'wss://ws.synodos.com',
+    theme: 'auto',
     language: 'ko',
-    maxFileSize: 10 * 1024 * 1024,
-    supportedFormats: ['jpg', 'png', 'pdf']
+    maxFileSize: 100 * 1024 * 1024,
+    supportedFormats: ['jpg', 'png', 'gif', 'pdf', 'doc', 'docx', 'xls', 'xlsx'],
+    features: {
+        darkMode: true,
+        notifications: true,
+        analytics: true
+    }
 };
 
 module.exports = config;
