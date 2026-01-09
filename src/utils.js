@@ -1,33 +1,67 @@
-﻿// Utility Functions
-function formatDate(date) {
-    return new Date(date).toLocaleDateString('ko-KR');
-}
+﻿// Utility Functions - Refactored with ES6+
+const formatDate = (date, locale = 'ko-KR') => {
+    return new Intl.DateTimeFormat(locale, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    }).format(new Date(date));
+};
 
-function formatTime(date) {
-    return new Date(date).toLocaleTimeString('ko-KR');
-}
+const formatTime = (date, locale = 'ko-KR') => {
+    return new Intl.DateTimeFormat(locale, {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    }).format(new Date(date));
+};
 
-function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
+const formatDateTime = (date, locale = 'ko-KR') => {
+    return formatDate(date, locale) + ' ' + formatTime(date, locale);
+};
 
-function truncate(str, length) {
-    if (str.length <= length) return str;
-    return str.slice(0, length) + '...';
-}
+const capitalize = (str) => str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : '';
 
-function debounce(func, wait) {
+const truncate = (str, length = 100, suffix = '...') => {
+    if (!str || str.length <= length) return str;
+    return str.slice(0, length - suffix.length) + suffix;
+};
+
+const debounce = (func, wait = 300) => {
     let timeout;
-    return function(...args) {
+    return (...args) => {
         clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
+        timeout = setTimeout(() => func(...args), wait);
     };
-}
+};
+
+const throttle = (func, limit = 300) => {
+    let inThrottle;
+    return (...args) => {
+        if (!inThrottle) {
+            func(...args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
+};
+
+const deepClone = (obj) => JSON.parse(JSON.stringify(obj));
+
+const isEmpty = (value) => {
+    if (value == null) return true;
+    if (Array.isArray(value) || typeof value === 'string') return value.length === 0;
+    if (typeof value === 'object') return Object.keys(value).length === 0;
+    return false;
+};
 
 module.exports = {
     formatDate,
     formatTime,
+    formatDateTime,
     capitalize,
     truncate,
-    debounce
+    debounce,
+    throttle,
+    deepClone,
+    isEmpty
 };
