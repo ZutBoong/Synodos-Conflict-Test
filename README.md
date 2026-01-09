@@ -1,0 +1,10 @@
+﻿# Synodos Conflict Test
+
+AI 癒몄? 異⑸룎 ?닿껐 湲곕뒫 ?뚯뒪?몃? ?꾪븳 ??μ냼?낅땲??
+
+## 異⑸룎 ?쒕굹由ъ삤
+
+1. **feature/config-update** -> main: src/config.js 異⑸룎
+2. **feature/utils-refactor** -> main: src/utils.js 異⑸룎
+
+媛?釉뚮옖移섎? main?쇰줈 癒몄?????異⑸룎??諛쒖깮?⑸땲??
